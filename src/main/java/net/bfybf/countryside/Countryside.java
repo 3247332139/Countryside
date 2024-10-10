@@ -1,6 +1,7 @@
 package net.bfybf.countryside;
 
 import com.mojang.logging.LogUtils;
+import net.bfybf.countryside.event.VillagerDropsHandler;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -32,6 +33,8 @@ public class Countryside {
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
+
+        MinecraftForge.EVENT_BUS.addListener(VillagerDropsHandler::onMobDropsLoot);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
